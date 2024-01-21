@@ -11,7 +11,7 @@ const Index = () => {
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setAccessToken(token);
-    navigate('/home');
+    navigate('/');
     setToken('');
   };
 

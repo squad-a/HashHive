@@ -19,11 +19,11 @@ const client = new ApolloClient({
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: '/auth',
     element: <Auth />
   },
   {
-    path: '/home',
+    path: '/',
     element: (
       <ProtectedRoute>
         <Home />

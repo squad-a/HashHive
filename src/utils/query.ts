@@ -16,8 +16,6 @@ export const AUTHENTICATE = gql`
       ambassador
       provider
       deactivated
-      unsubscribeCode
-      email
     }
   }
 `;

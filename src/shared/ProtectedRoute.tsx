@@ -6,7 +6,7 @@ export const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const access_token = useAppStore((state) => state.access_token);
 
   if (access_token === '') {
-    return <Navigate to='/' replace={true} />;
+    return <Navigate to='/auth' replace={true} />;
   } else {
     return children;
   }
