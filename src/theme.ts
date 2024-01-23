@@ -16,7 +16,7 @@ const theme = createTheme({
       main: '#fff'
     },
     info: {
-      main: '#ffc200'
+      main: '#3069FC'
     }
   },
   breakpoints: {
