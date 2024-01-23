@@ -1,17 +1,23 @@
 import { useQuery } from '@apollo/client';
-import { AUTHENTICATE } from '../../utils/query';
+import { GET_CURRENT_USER_AND_INITIAL_DATA } from '../../utils/query';
 import { Navbar } from './components/Navbar';
+import { RecentPost } from './components/RecentPost';
+import { PersonalizedPost } from './components/PersonalizedPost';
 
 const Index = () => {
-  const { data, loading } = useQuery(AUTHENTICATE);
+  const { data, loading, error } = useQuery(GET_CURRENT_USER_AND_INITIAL_DATA);
   console.log(data);
 
   if (loading) return <div>Loading...</div>;
 
+  if (error) return <div>something went wrong</div>;
+
   return (
-    <div>
+    <>
       <Navbar me={data.me} />
-    </div>
+      <RecentPost recent={data.recent} />
+      <PersonalizedPost personalized={data.personalized} />
+    </>
   );
 };
 
