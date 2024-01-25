@@ -1,21 +1,20 @@
+import { Box, Container, Typography } from '@mui/material';
 import { FeedPostConnection, Post } from '../../../__generated__/graphql';
+import { Card } from './Card';
 
 export const PersonalizedPost = ({ personalized }: { personalized: FeedPostConnection }) => {
+  console.log(personalized);
   return (
-    <div>
-      <h1>Personalized Post</h1>
+    <Container>
+      <Typography variant='h3' margin={3}>
+        Personalized Post
+      </Typography>
 
-      {personalized.edges.map(({ node }: { node: Post }) => (
-        <div key={node.id}>
-          <h1 style={{ fontSize: '30' }}>{node.title}</h1>
-          <p>{node.brief}</p>
-          <img width={200} height={100} src={node.coverImage?.url} alt={node.author.name} />
-
-          <a href={node.url} target='_blank'>
-            <button>Read more</button>
-          </a>
-        </div>
-      ))}
-    </div>
+      <Box display='flex' flexDirection='row' flexWrap='wrap'>
+        {personalized.edges.map(({ node }: { node: Post }) => (
+          <Card {...node} />
+        ))}
+      </Box>
+    </Container>
   );
 };
