@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const GET_CURRENT_USER_AND_INITIAL_DATA = gql`
+const GET_CURRENT_USER_AND_INITIAL_DATA = gql`
   query Me {
     me {
       id
@@ -157,3 +157,18 @@ export const GET_CURRENT_USER_AND_INITIAL_DATA = gql`
     }
   }
 `;
+
+const ADD_POST = gql`
+  mutation PublishPost($input: PublishPostInput!) {
+    publishPost(input: $input) {
+      post {
+        id
+        slug
+        title
+        subtitle
+      }
+    }
+  }
+`;
+
+export { GET_CURRENT_USER_AND_INITIAL_DATA, ADD_POST };
