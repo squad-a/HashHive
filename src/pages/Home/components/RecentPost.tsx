@@ -1,19 +1,21 @@
+import { Box, Container, Typography } from '@mui/material';
 import { FeedPostConnection, Post } from '../../../__generated__/graphql';
+import { Card } from './Card';
 
 export const RecentPost = ({ recent }: { recent: FeedPostConnection }) => {
   return (
     <>
-      {recent.edges.map(({ node }: { node: Post }) => (
-        <div key={node.id}>
-          <h1 style={{ fontSize: '10' }}>{node.title}</h1>
-          <p>{node.brief}</p>
-          <img width={200} height={100} src={node.coverImage?.url} alt={node.author.name} />
+      <Container>
+        <Typography variant='h3' margin={3}>
+          Recent Post
+        </Typography>
 
-          <a href={node.url} target='_blank'>
-            <button>Read more</button>
-          </a>
-        </div>
-      ))}
+        <Box display='flex' flexDirection='row' flexWrap='wrap' margin={3}>
+          {recent.edges.map(({ node }: { node: Post }) => (
+            <Card {...node} />
+          ))}
+        </Box>
+      </Container>
     </>
   );
 };
