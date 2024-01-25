@@ -18,6 +18,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import { Link } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
   color: 'black',
@@ -167,13 +168,11 @@ export const Navbar = ({ me }: { me: MyUser }) => {
             aria-label='open drawer'
             sx={{ mr: 2 }}
           >
-            {me.profilePicture && (
-              <img
-                src={me.profilePicture}
-                alt='Your Image'
-                style={{ width: '65px', height: '65px', marginLeft: '10px' }}
-              />
-            )}
+            <img
+              src='/logo.png'
+              alt='hashhive'
+              style={{ width: '55px', height: '55px', marginLeft: '10px' }}
+            />
           </IconButton>
           <Search>
             <SearchIconWrapper>
@@ -181,6 +180,7 @@ export const Navbar = ({ me }: { me: MyUser }) => {
             </SearchIconWrapper>
             <StyledInputBase placeholder='Search blog' inputProps={{ 'aria-label': 'search' }} />
           </Search>
+          65px 65px
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton size='large' color='inherit'>
@@ -189,16 +189,20 @@ export const Navbar = ({ me }: { me: MyUser }) => {
               </Button>
             </IconButton>
             <IconButton size='large' color='inherit'>
-              <Button
-                variant='contained'
-                color='error'
-                style={{ backgroundColor: '#2196f3', borderRadius: '20px', color: 'white' }}
-              >
-                <EditCalendarOutlinedIcon />
-                Write Blog
-              </Button>
+              <Link to='/create-blog'>
+                <Button
+                  variant='contained'
+                  color='error'
+                  style={{ backgroundColor: '#2196f3', borderRadius: '20px', color: 'white' }}
+                >
+                  <EditCalendarOutlinedIcon />
+                  Write Blog
+                </Button>
+              </Link>
             </IconButton>
-            <Typography style={{ color: 'black', marginTop: '25px' }}>Hello! Durgesh</Typography>
+            <Typography style={{ color: 'black', marginTop: '25px' }}>
+              Hello! {me.username}
+            </Typography>
             <IconButton
               size='large'
               edge='end'
@@ -208,12 +212,14 @@ export const Navbar = ({ me }: { me: MyUser }) => {
               onClick={handleProfileMenuOpen}
               color='inherit'
             >
-              <Avatar
-                alt='Remy Sharp'
-                src='../src/assets/avattar.jpeg'
-                sx={{ width: 48, height: 48 }}
-                style={{ marginRight: '40px' }}
-              />
+              {me.profilePicture && (
+                <Avatar
+                  alt={me.name}
+                  src={me.profilePicture}
+                  sx={{ width: 48, height: 48 }}
+                  style={{ marginRight: '40px' }}
+                />
+              )}
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>

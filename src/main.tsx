@@ -10,6 +10,7 @@ import theme from './theme';
 
 const Auth = lazy(() => import('./pages/Auth/Index'));
 const Home = lazy(() => import('./pages/Home/Index'));
+const PostEditor = lazy(() => import('./pages/PostEditor/Index'));
 
 const client = new ApolloClient({
   uri: import.meta.env.VITE_URL,
@@ -29,6 +30,14 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <Home />
+      </ProtectedRoute>
+    )
+  },
+  {
+    path: '/create-blog',
+    element: (
+      <ProtectedRoute>
+        <PostEditor />
       </ProtectedRoute>
     )
   }
