@@ -1,8 +1,10 @@
 import { useMutation } from '@apollo/client';
 import { Button } from '@mui/material';
 import { ADD_POST } from '../../utils/query';
+import { useAppStore } from '../../utils/store';
 
 const Index = () => {
+  const publicationId = useAppStore((state) => state.publication_id);
   const [PublishPost, { data, loading, error }] = useMutation(ADD_POST);
 
   console.log(data, loading, error);
@@ -15,12 +17,13 @@ const Index = () => {
             variables: {
               input: {
                 title: 'Hey welcome',
-                subtitle: 'This is cool',
-                publicationId: '65821026c25b82e69420fd5e',
+                subtitle: 'Intro about me',
+                publicationId: publicationId,
                 contentMarkdown: '## Title here',
-                slug: 'this-is-cool',
+                slug: 'intro-about-me',
                 tags: {
-                  name: 'hashnode'
+                  name: 'test',
+                  slug: 'test'
                 }
               }
             }

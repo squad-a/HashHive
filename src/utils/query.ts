@@ -17,7 +17,7 @@ const GET_CURRENT_USER_AND_INITIAL_DATA = gql`
       provider
       deactivated
     }
-    personalized: feed(first: 10, filter: { type: PERSONALIZED }) {
+    personalized: feed(first: 9, filter: { type: PERSONALIZED }) {
       edges {
         node {
           id
@@ -86,7 +86,7 @@ const GET_CURRENT_USER_AND_INITIAL_DATA = gql`
         }
       }
     }
-    recent: feed(first: 10, filter: { type: RECENT }) {
+    recent: feed(first: 9, filter: { type: RECENT }) {
       edges {
         node {
           id
@@ -171,4 +171,13 @@ const ADD_POST = gql`
   }
 `;
 
-export { GET_CURRENT_USER_AND_INITIAL_DATA, ADD_POST };
+const GET_PUBLICATION = gql`
+  query getPublication($host: String!) {
+    publication(host: $host) {
+      title
+      id
+    }
+  }
+`;
+
+export { GET_CURRENT_USER_AND_INITIAL_DATA, ADD_POST, GET_PUBLICATION };
