@@ -4,19 +4,33 @@ import { useNavigate } from 'react-router-dom';
 import { Box, Grid, Typography, styled, Button, TextField } from '@mui/material';
 import Ellipse from '../../assets/Ellipse 766.png';
 import typewriter from '../../assets/undraw_typewriter_re_u9i2 1.png';
+import { useQuery } from '@apollo/client';
+import { GET_PUBLICATION } from '../../utils/query';
 
 const Index = () => {
   const [token, setToken] = useState('');
-  const setAccessToken = useAppStore((state) => state.setAccessToken);
+  const [host, setHost] = useState('');
+  const setTokenAndPublicationId = useAppStore((state) => state.setTokenAndPublicationId);
+  const { data } = useQuery(GET_PUBLICATION, { variables: { host } });
 
   const navigate = useNavigate();
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    if (host === '' && token === '') return;
+
     console.log('button working');
-    setAccessToken(token);
-    navigate('/');
-    setToken('');
+    console.log('check 1', data, token, host);
+    setTokenAndPublicationId({
+      token,
+      id: data.publication.id
+    });
+
+    setTimeout(() => {
+      navigate('/');
+      setToken('');
+      setHost('');
+    }, 500);
   };
 
   const CircleBox = styled(Box)({
@@ -100,6 +114,18 @@ const Index = () => {
                   },
                   padding: '10px'
                 }}
+                name='host'
+                value={host}
+                onChange={(e) => setHost(e.target.value)}
+                placeholder='eg: johndoe.hashnode.dev'
+              />
+              <TextField
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    borderRadius: '30px' // Add borderRadius for the outlined input
+                  },
+                  padding: '10px'
+                }}
                 name='token'
                 value={token}
                 onChange={(e) => setToken(e.target.value)}
@@ -108,7 +134,6 @@ const Index = () => {
               <ButtonStyled type='submit' sx={{ margin: '15px' }}>
                 Submit
               </ButtonStyled>
-              {/* <button>Submit</button> */}
             </Box>
             <Typography padding={2}>Where i get token? | Don’t have a token</Typography>
           </Box>
