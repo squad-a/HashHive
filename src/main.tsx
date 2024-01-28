@@ -11,6 +11,7 @@ import theme from './theme';
 const Auth = lazy(() => import('./pages/Auth/Index'));
 const Home = lazy(() => import('./pages/Home/Index'));
 const PostEditor = lazy(() => import('./pages/PostEditor/Index'));
+const Profile = lazy(() => import('./pages/Profile/Index'));
 
 const client = new ApolloClient({
   uri: import.meta.env.VITE_URL,
@@ -38,6 +39,14 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <PostEditor />
+      </ProtectedRoute>
+    )
+  },
+  {
+    path: '/profile',
+    element: (
+      <ProtectedRoute>
+        <Profile />
       </ProtectedRoute>
     )
   }
