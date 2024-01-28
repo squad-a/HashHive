@@ -180,4 +180,72 @@ const GET_PUBLICATION = gql`
   }
 `;
 
-export { GET_CURRENT_USER_AND_INITIAL_DATA, ADD_POST, GET_PUBLICATION };
+const GET_CURRENT_USER_PROFILE_WITH_POSTS = gql`
+  query Me {
+    me {
+      id
+      username
+      name
+      profilePicture
+      followersCount
+      followingsCount
+      tagline
+      dateJoined
+      location
+      availableFor
+      ambassador
+      provider
+      deactivated
+      socialMediaLinks {
+        website
+        github
+        twitter
+        instagram
+        facebook
+        stackoverflow
+        linkedin
+        youtube
+      }
+      posts(pageSize: 10, page: 1) {
+        totalDocuments
+        nodes {
+          id
+          slug
+          title
+          subtitle
+          url
+          canonicalUrl
+          cuid
+          brief
+          readTimeInMinutes
+          views
+          reactionCount
+          replyCount
+          responseCount
+          featured
+          bookmarked
+          featuredAt
+          publishedAt
+          updatedAt
+          hasLatexInPost
+          isFollowed
+          isAutoPublishedFromRSS
+          coverImage {
+            url
+            isPortrait
+            attribution
+            photographer
+            isAttributionHidden
+          }
+        }
+      }
+    }
+  }
+`;
+
+export {
+  GET_CURRENT_USER_AND_INITIAL_DATA,
+  ADD_POST,
+  GET_PUBLICATION,
+  GET_CURRENT_USER_PROFILE_WITH_POSTS
+};
