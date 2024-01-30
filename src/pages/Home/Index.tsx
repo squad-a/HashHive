@@ -3,6 +3,7 @@ import { GET_CURRENT_USER_AND_INITIAL_DATA } from '../../utils/query';
 import { Navbar } from './components/Navbar';
 import { RecentPost } from './components/RecentPost';
 import { PersonalizedPost } from './components/PersonalizedPost';
+import Footer from './components/Footer';
 
 const Index = () => {
   const { data, loading, error } = useQuery(GET_CURRENT_USER_AND_INITIAL_DATA);
@@ -17,6 +18,7 @@ const Index = () => {
       <Navbar me={data.me} />
       <RecentPost recent={data.recent} />
       <PersonalizedPost personalized={data.personalized} />
+      <Footer />
     </>
   );
 };

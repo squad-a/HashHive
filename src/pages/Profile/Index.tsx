@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/client';
 import { GET_CURRENT_USER_PROFILE_WITH_POSTS } from '../../utils/query';
 import { ProfileCard } from './components/ProfileCard';
 import { Post } from '../../__generated__/graphql';
+import Button from '@mui/material/Button';
 
 const Index = () => {
   const { data, loading, error } = useQuery(GET_CURRENT_USER_PROFILE_WITH_POSTS);
@@ -14,7 +15,12 @@ const Index = () => {
     <section>
       <ProfileCard me={data.me} />
 
-      <h1>Post</h1>
+      <Button
+        variant='contained'
+        style={{ marginTop: '20px', backgroundColor: '#007bff', width: '90px' }}
+      >
+        Blogs
+      </Button>
 
       {data.me.posts.nodes.map((post: Post) => (
         <div key={post.id}>
