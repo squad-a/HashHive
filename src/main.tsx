@@ -7,6 +7,7 @@ import { useAppStore } from './utils/store.tsx';
 import { ProtectedRoute } from './shared/ProtectedRoute.tsx';
 import { ThemeProvider } from '@mui/material';
 import theme from './theme';
+import { GetToken } from './pages/GetToken/index.tsx';
 
 const Auth = lazy(() => import('./pages/Auth/Index'));
 const Home = lazy(() => import('./pages/Home/Index'));
@@ -47,6 +48,14 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <PostEditor />
+      </ProtectedRoute>
+    )
+  },
+  {
+    path: '/getToken',
+    element: (
+      <ProtectedRoute>
+        <GetToken />
       </ProtectedRoute>
     )
   }
