@@ -105,7 +105,9 @@ export const Navbar = ({ me }: { me: MyUser }) => {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>
-        <Link to='/profile'>Profile</Link>
+        <Link style={{ textDecoration: 'none', color: '#212121' }} to='/profile'>
+          Profile
+        </Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
@@ -185,12 +187,15 @@ export const Navbar = ({ me }: { me: MyUser }) => {
           65px 65px
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size='large' color='inherit'>
-              <Button variant='contained' color='success' style={{ borderRadius: '20px' }}>
-                Start Reading
-              </Button>
-            </IconButton>
-            <IconButton size='large' color='inherit'>
+            <IconButton
+              sx={{
+                '&:hover': {
+                  backgroundColor: 'transparent'
+                }
+              }}
+              size='large'
+              color='inherit'
+            >
               <Link to='/create-blog'>
                 <Button
                   variant='contained'
@@ -206,6 +211,11 @@ export const Navbar = ({ me }: { me: MyUser }) => {
               Hello! {me.username}
             </Typography>
             <IconButton
+              sx={{
+                '&:hover': {
+                  backgroundColor: 'transparent'
+                }
+              }}
               size='large'
               edge='end'
               aria-label='account of current user'

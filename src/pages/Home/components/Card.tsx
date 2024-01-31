@@ -23,16 +23,18 @@ export const Card = (props: Post) => {
   return (
     <>
       <Box
+        sx={{ border: '1px solid gray', borderRadius: '15px' }}
         margin={3}
-        alignItems={{ lg: 'center' }}
-        width={{ xs: '100%', sm: '40%', md: '40%', lg: '25%' }}
+        alignItems={{ md: 'center', lg: 'center' }}
+        width={{ xs: '80%', sm: '40%', md: '25%', lg: '25%' }}
         height={{ lg: '50vh' }}
         key={props.id}
       >
-        <img
-          width={270}
-          style={{ borderRadius: '30px' }}
-          height={160}
+        <Box
+          component='img'
+          width='100%'
+          height={{ xs: 200, sm: 120, md: 120, lg: 160 }}
+          sx={{ borderRadius: '15px' }}
           src={props.coverImage === null ? noImage : props.coverImage?.url}
           alt={props.author.name}
         />
