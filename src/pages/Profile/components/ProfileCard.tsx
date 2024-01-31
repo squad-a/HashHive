@@ -1,85 +1,3 @@
-// import { MyUser } from '../../../__generated__/graphql';
-
-// export const ProfileCard = (props: { me: MyUser }) => {
-//   const { me } = props;
-
-//   console.log(me.posts);
-
-//   return (
-//     <>
-//       <div>
-
-//         {me.profilePicture && <img src={me.profilePicture} alt={me.username} />}
-
-//         <p>10K</p>
-//         <p>Likes</p>
-
-//         <p>100</p>
-//         <p>Blogs</p>
-
-//         <p>1K</p>
-//         <p>Comments</p>
-
-//         <p>@durgeshkiranpure</p>
-
-//       </div>
-
-//     </>
-//   );
-// };
-
-// import { MyUser } from '../../../__generated__/graphql';
-
-// export const ProfileCard = (props: { me: MyUser }) => {
-//   const { me } = props;
-
-//   return (
-
-//     <div style={{ display: 'flex', alignItems: 'center' }}>
-
-//       {me.profilePicture && (
-//         <img
-//           src={me.profilePicture}
-//           alt={me.username}
-//           style={{
-//             borderRadius: '50%',
-//             width: '200px', // Adjust the size as needed
-//             height: '200px', // Adjust the size as needed
-//             marginRight: '30px', // Adjust the spacing between image and text
-//             marginTop:'70px',
-//             marginLeft:'50px'
-//           }}
-//         />
-//       )}
-
-//       <div >
-
-//         <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
-
-//           <div style={{ textAlign: 'center' }}>
-//             <p style={{fontWeight: 'bold',fontSize: '1.5em'}} >10K</p>
-//             <p style={{  color: '#888' }}>Likes</p>
-//           </div>
-
-//           <div style={{ textAlign: 'center' }}>
-//             <p style={{fontWeight: 'bold',fontSize: '1.5em'}} >100</p>
-//             <p style={{  color: '#888' }}>Blogs</p>
-//           </div>
-
-//           <div style={{ textAlign: 'center' }}>
-//             <p style={{fontWeight: 'bold',fontSize: '1.5em'}} >1K</p>
-//             <p style={{ color: '#888' }}>Comments</p>
-//           </div>
-
-//         </div>
-
-//         <p style={{ fontSize: '1.2em', fontWeight: 'bold', marginTop: '5px' }}>@durgeshkiranpure</p>
-
-//       </div>
-//     </div>
-//   );
-// };
-
 import { MyUser } from '../../../__generated__/graphql';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -152,6 +70,11 @@ export const ProfileCard = (props: { me: MyUser }) => {
           Edit Profile
         </Typography>
       </Box>
+      <Typography style={{ width: '1296px', marginLeft: '30px', marginTop: '10px' }}>
+        ohn Smith is a fictional character known for his adventurous spirit and insatiable
+        curiosity. Born and raised in a small town nestled in the countryside, John developed a love
+        for exploration at an early age.
+      </Typography>
     </Box>
   );
 };
