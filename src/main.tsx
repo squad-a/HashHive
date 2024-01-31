@@ -6,13 +6,12 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { useAppStore } from './utils/store.tsx';
 import { ProtectedRoute } from './shared/ProtectedRoute.tsx';
 import { ThemeProvider } from '@mui/material';
-import Footer from './pages/Home/components/Footer.tsx';
 import theme from './theme';
 
 const Auth = lazy(() => import('./pages/Auth/Index'));
 const Home = lazy(() => import('./pages/Home/Index'));
 const PostEditor = lazy(() => import('./pages/PostEditor/Index'));
-
+const Profile = lazy(() => import('./pages/Profile/Index.tsx'));
 const client = new ApolloClient({
   uri: import.meta.env.VITE_URL,
   cache: new InMemoryCache(),
@@ -27,9 +26,14 @@ const router = createBrowserRouter([
     element: <Auth />
   },
   {
-    path: '/footer',
-    element: <Footer />
+    path: '/profile',
+    element: (
+      <ProtectedRoute>
+        <Profile />
+      </ProtectedRoute>
+    )
   },
+
   {
     path: '/',
     element: (
