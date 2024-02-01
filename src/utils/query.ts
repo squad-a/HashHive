@@ -196,6 +196,11 @@ const GET_CURRENT_USER_PROFILE_WITH_POSTS = gql`
       ambassador
       provider
       deactivated
+      bio {
+        markdown
+        html
+        text
+      }
       socialMediaLinks {
         website
         github
@@ -219,6 +224,23 @@ const GET_CURRENT_USER_PROFILE_WITH_POSTS = gql`
           brief
           readTimeInMinutes
           views
+          author {
+            id
+            username
+            name
+            profilePicture
+            followersCount
+            followingsCount
+            tagline
+            dateJoined
+            location
+            availableFor
+            ambassador
+            deactivated
+            following
+            followsBack
+            isPro
+          }
           reactionCount
           replyCount
           responseCount

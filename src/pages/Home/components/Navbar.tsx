@@ -109,7 +109,8 @@ export const Navbar = ({ me }: { me: MyUser }) => {
           Profile
         </Link>
       </MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      {/* //Todo how can i place logout functionality */}
+      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
     </Menu>
   );
 
@@ -165,19 +166,21 @@ export const Navbar = ({ me }: { me: MyUser }) => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position='static' sx={{ backgroundColor: 'white' }}>
         <Toolbar>
-          <IconButton
-            size='large'
-            edge='start'
-            color='inherit'
-            aria-label='open drawer'
-            sx={{ mr: 2 }}
-          >
-            <img
-              src='/logo.png'
-              alt='hashhive'
-              style={{ width: '55px', height: '55px', marginLeft: '10px' }}
-            />
-          </IconButton>
+          <Link to='/'>
+            <IconButton
+              size='large'
+              edge='start'
+              color='inherit'
+              aria-label='open drawer'
+              sx={{ mr: 2 }}
+            >
+              <img
+                src='/logo.png'
+                alt='hashhive'
+                style={{ width: '55px', height: '55px', marginLeft: '10px' }}
+              />
+            </IconButton>
+          </Link>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />

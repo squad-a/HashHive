@@ -1,21 +1,22 @@
 import { useQuery } from '@apollo/client';
-import { GET_CURRENT_USER_AND_INITIAL_DATA } from '../../utils/query';
+import { GET_CURRENT_USER_PROFILE_WITH_POSTS } from '../../utils/query';
 import { Navbar } from '../Home/components/Navbar';
 import { ProfileCard } from './components/ProfileCard';
 
 import Button from '@mui/material/Button';
 import Footer from '../Home/components/Footer';
-import { PersonalizedPost } from '../Home/components/PersonalizedPost';
+import { MyPost } from './components/MyPost';
+import { Spinner } from '../../shared/Spinner';
 
 const Index = () => {
-  const { data, loading, error } = useQuery(GET_CURRENT_USER_AND_INITIAL_DATA);
+  const { data, loading, error } = useQuery(GET_CURRENT_USER_PROFILE_WITH_POSTS);
   console.log(data);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Spinner />;
 
   if (error) return <div>something went wrong</div>;
 
-  // Add a check for data.me and data.me.posts.nodes
+  //todo make something went wrong page and add user's post section
 
   return (
     <section>
@@ -29,7 +30,7 @@ const Index = () => {
         Blogs
       </Button>
 
-      <PersonalizedPost personalized={data.personalized} />
+      <MyPost posts={data.me.posts} />
       <Footer />
     </section>
   );

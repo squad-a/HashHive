@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 export const ProfileCard = (props: { me: MyUser }) => {
   const { me } = props;
 
+  //todo fix UI issue
   return (
     <Box>
       <Box display='flex' alignItems='center'>
@@ -31,24 +32,24 @@ export const ProfileCard = (props: { me: MyUser }) => {
           >
             <Box textAlign='center'>
               <Typography variant='h6' fontWeight='bold' marginRight='20px'>
-                10K
+                {me.posts.totalDocuments}
               </Typography>
-              <Typography color='textSecondary'>Likes</Typography>
+              <Typography color='textSecondary'>Posts</Typography>
             </Box>
 
             <Box textAlign='center'>
               <Typography variant='h6' fontWeight='bold'>
-                100
+                {me.followersCount}
               </Typography>
-              <Typography color='textSecondary'>Blogs</Typography>
+              <Typography color='textSecondary'>Followers</Typography>
             </Box>
 
             <Box textAlign='center'>
               <Typography variant='h6' fontWeight='bold' marginLeft='10px'>
-                1K
+                {me.followingsCount}
               </Typography>
               <Typography color='textSecondary' marginLeft='20px'>
-                Comments
+                Following
               </Typography>
             </Box>
           </Box>
@@ -61,7 +62,7 @@ export const ProfileCard = (props: { me: MyUser }) => {
 
       <Box display={'flex'}>
         <Typography variant='h6' fontWeight='bold' style={{ marginLeft: '30px' }}>
-          Durgesh Kiranpure
+          {me.name}
         </Typography>
         <Typography
           fontWeight='bold'
@@ -71,9 +72,7 @@ export const ProfileCard = (props: { me: MyUser }) => {
         </Typography>
       </Box>
       <Typography style={{ width: '1296px', marginLeft: '30px', marginTop: '10px' }}>
-        ohn Smith is a fictional character known for his adventurous spirit and insatiable
-        curiosity. Born and raised in a small town nestled in the countryside, John developed a love
-        for exploration at an early age.
+        {me.bio?.text}
       </Typography>
     </Box>
   );
