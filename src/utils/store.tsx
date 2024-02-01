@@ -15,6 +15,7 @@ export const useAppStore = create<IStore>()(
       publication_id: '',
       setTokenAndPublicationId: (data) =>
         set({ access_token: data.token, publication_id: data.id }),
+      //todo use this function to do logout
       removeTokenAndPublicationId: () => set({ access_token: '' })
     }),
     {

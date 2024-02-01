@@ -8,6 +8,7 @@ import { ProtectedRoute } from './shared/ProtectedRoute.tsx';
 import { ThemeProvider } from '@mui/material';
 import theme from './theme';
 import { GetToken } from './pages/GetToken/index.tsx';
+import { Spinner } from './shared/Spinner.tsx';
 
 const Auth = lazy(() => import('./pages/Auth/Index'));
 const Home = lazy(() => import('./pages/Home/Index'));
@@ -65,7 +66,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <ApolloProvider client={client}>
-        <Suspense fallback={<>Loading ...</>}>
+        <Suspense fallback={<Spinner />}>
           <RouterProvider router={router} />
         </Suspense>
       </ApolloProvider>
