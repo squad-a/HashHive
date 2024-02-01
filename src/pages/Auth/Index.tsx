@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAppStore } from '../../utils/store';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Box, Grid, Typography, styled, Button, TextField } from '@mui/material';
 import Ellipse from '../../assets/Ellipse 766.png';
 import typewriter from '../../assets/undraw_typewriter_re_u9i2 1.png';
@@ -135,7 +135,12 @@ const Index = () => {
                 Submit
               </ButtonStyled>
             </Box>
-            <Typography padding={2}>Where i get token? | Don’t have a token</Typography>
+            <Link
+              style={{ textDecoration: 'none', fontFamily: 'Poppins', color: '#212121' }}
+              to='/getToken'
+            >
+              Where i get token? | Don’t have a token
+            </Link>
           </Box>
         </Grid>
       </Grid>
