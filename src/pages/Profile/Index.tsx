@@ -2,12 +2,10 @@ import { useQuery } from '@apollo/client';
 import { GET_CURRENT_USER_PROFILE_WITH_POSTS } from '../../utils/query';
 import { Navbar } from '../Home/components/Navbar';
 import { ProfileCard } from './components/ProfileCard';
-
-import Button from '@mui/material/Button';
 import Footer from '../Home/components/Footer';
 import { MyPost } from './components/MyPost';
 import { Spinner } from '../../shared/Spinner';
-import { Box } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 
 const Index = () => {
   const { data, loading, error } = useQuery(GET_CURRENT_USER_PROFILE_WITH_POSTS);
@@ -23,13 +21,20 @@ const Index = () => {
     <section>
       <Navbar me={data.me} />
       <ProfileCard me={data.me} />
-      <Box display='flex' flexDirection='column' width='100%' alignItems='center' mb={3}>
-        <Button variant='contained' sx={{ marginTop: '20px', backgroundColor: '#007bff' }}>
-          Blogs
-        </Button>
-      </Box>
-
-      <MyPost posts={data.me.posts} />
+      <Container>
+        <Typography variant='h3' sx={{ margin: '20px', textAlign: 'center' }}>
+          My Blogs
+        </Typography>
+        <Box
+          display='flex'
+          flexWrap='wrap'
+          flexDirection='row'
+          alignItems='center'
+          justifyContent='center'
+        >
+          <MyPost posts={data.me.posts} />
+        </Box>
+      </Container>
       <Footer />
     </section>
   );
