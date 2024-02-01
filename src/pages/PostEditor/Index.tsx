@@ -17,10 +17,8 @@ const Index = () => {
     title: '',
     subtitle: '',
     slug: '',
-    tags: {
-      name: '',
-      slug: ''
-    }
+    tags_name: '',
+    tags_slug: ''
   });
 
   const [markdownValue, setMarkdownValue] = useState('');
@@ -28,21 +26,11 @@ const Index = () => {
   const handleInputChange = (e: { target: { name: string; value: string } }) => {
     const { name, value } = e.target;
     // If the changed field is within tags, handle it separately
-    if (name.startsWith('tags.')) {
-      const tagName = name.split('.')[1];
-      setPost((prevFormData) => ({
-        ...prevFormData,
-        tags: {
-          ...prevFormData.tags,
-          [tagName]: value
-        }
-      }));
-    } else {
-      setPost((prevFormData) => ({
-        ...prevFormData,
-        [name]: value
-      }));
-    }
+
+    setPost((prevFormData) => ({
+      ...prevFormData,
+      [name]: value
+    }));
   };
 
   useEffect(() => {
@@ -51,6 +39,13 @@ const Index = () => {
       slug: post.title.toLowerCase().split(' ').join('-')
     }));
   }, [post.title]);
+
+  useEffect(() => {
+    setPost((prev) => ({
+      ...prev,
+      tags_slug: post.tags_name.toLowerCase().split(' ').join('-')
+    }));
+  }, [post.tags_name]);
 
   return (
     <>
@@ -101,8 +96,8 @@ const Index = () => {
                           contentMarkdown: markdownValue,
                           slug: post.slug,
                           tags: {
-                            name: post.tags.name,
-                            slug: post.tags.slug
+                            name: post.tags_name,
+                            slug: post.tags_slug
                           }
                         }
                       }
@@ -111,10 +106,8 @@ const Index = () => {
                       title: '',
                       subtitle: '',
                       slug: '',
-                      tags: {
-                        name: '',
-                        slug: ''
-                      }
+                      tags_name: '',
+                      tags_slug: ''
                     });
                     setMarkdownValue('');
                   }}
@@ -138,21 +131,21 @@ const Index = () => {
               multiline
               rows={3}
             />
-            <InputLabel htmlFor='tags.name' sx={{ marginTop: 2 }}>
+            <InputLabel htmlFor='tags_name' sx={{ marginTop: 2 }}>
               Tag name
             </InputLabel>
             <TextField
-              value={post.tags.name}
-              name='tags.name'
+              value={post.tags_name}
+              name='tags_name'
               onChange={handleInputChange}
               variant='outlined'
             />
-            <InputLabel htmlFor='tags.slug' sx={{ marginTop: 2 }}>
+            <InputLabel htmlFor='tags_slug' sx={{ marginTop: 2 }}>
               Tag slug
             </InputLabel>
             <TextField
-              value={post.tags.slug}
-              name='tags.slug'
+              value={post.tags_slug}
+              name='tags_slug'
               onChange={handleInputChange}
               variant='outlined'
             />
