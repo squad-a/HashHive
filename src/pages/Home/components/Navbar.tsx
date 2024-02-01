@@ -8,17 +8,15 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import EditCalendarOutlinedIcon from '@mui/icons-material/EditCalendarOutlined';
 import Avatar from '@mui/material/Avatar';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import MoreIcon from '@mui/icons-material/MoreVert';
-import { Link } from 'react-router-dom';
+import MenuIcon from '@mui/icons-material/Menu';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAppStore } from '../../../utils/store';
 
 const Search = styled('div')(({ theme }) => ({
   color: 'black',
@@ -65,8 +63,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export const Navbar = ({ me }: { me: MyUser }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
+  const removeTokenAndPublicationId = useAppStore((state) => state.removeTokenAndPublicationId);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  const navigate = useNavigate();
 
   console.log(me);
 
@@ -85,6 +86,11 @@ export const Navbar = ({ me }: { me: MyUser }) => {
 
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setMobileMoreAnchorEl(event.currentTarget);
+  };
+
+  const handleLogOut = () => {
+    removeTokenAndPublicationId();
+    navigate('/auth');
   };
 
   const menuId = 'primary-search-account-menu';
@@ -110,7 +116,7 @@ export const Navbar = ({ me }: { me: MyUser }) => {
         </Link>
       </MenuItem>
       {/* //Todo how can i place logout functionality */}
-      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+      <MenuItem onClick={handleLogOut}>Logout</MenuItem>
     </Menu>
   );
 
@@ -131,34 +137,15 @@ export const Navbar = ({ me }: { me: MyUser }) => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton size='large' aria-label='show 4 new mails' color='inherit'>
-          <Badge badgeContent={4} color='error'>
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton size='large' aria-label='show 17 new notifications' color='inherit'>
-          <Badge badgeContent={17} color='error'>
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size='large'
-          aria-label='account of current user'
-          aria-controls='primary-search-account-menu'
-          aria-haspopup='true'
-          color='inherit'
+      <MenuItem onClick={handleMenuClose}>
+        <Link
+          style={{ display: 'flex', gap: '5px', textDecoration: 'none', color: '#212121' }}
+          to='/profile'
         >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
+          <AccountCircle /> Profile
+        </Link>
       </MenuItem>
+      <MenuItem onClick={handleLogOut}>Logout</MenuItem>
     </Menu>
   );
 
@@ -181,13 +168,12 @@ export const Navbar = ({ me }: { me: MyUser }) => {
               />
             </IconButton>
           </Link>
-          <Search>
+          <Search sx={{ display: 'flex', alignItems: 'center' }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase placeholder='Search blog' inputProps={{ 'aria-label': 'search' }} />
           </Search>
-          65px 65px
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton
@@ -239,6 +225,7 @@ export const Navbar = ({ me }: { me: MyUser }) => {
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
+              sx={{ color: 'black' }}
               size='large'
               aria-label='show more'
               aria-controls={mobileMenuId}
@@ -246,7 +233,7 @@ export const Navbar = ({ me }: { me: MyUser }) => {
               onClick={handleMobileMenuOpen}
               color='inherit'
             >
-              <MoreIcon />
+              <MenuIcon />
             </IconButton>
           </Box>
         </Toolbar>

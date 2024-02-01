@@ -10,7 +10,7 @@ export const RecentPost = ({ recent }: { recent: FeedPostConnection }) => {
           Recent Post
         </Typography>
 
-        <Box display='flex' flexDirection='row' flexWrap='wrap' gap='2' margin={3}>
+        <Box display='flex' flexDirection='row' flexWrap='wrap' gap='2' margin={{ lg: 3 }}>
           {recent.edges.map(({ node }: { node: Post }) => (
             <Card {...node} />
           ))}

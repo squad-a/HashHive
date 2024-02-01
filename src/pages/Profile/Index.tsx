@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import Footer from '../Home/components/Footer';
 import { MyPost } from './components/MyPost';
 import { Spinner } from '../../shared/Spinner';
+import { Box } from '@mui/material';
 
 const Index = () => {
   const { data, loading, error } = useQuery(GET_CURRENT_USER_PROFILE_WITH_POSTS);
@@ -22,13 +23,11 @@ const Index = () => {
     <section>
       <Navbar me={data.me} />
       <ProfileCard me={data.me} />
-
-      <Button
-        variant='contained'
-        style={{ marginTop: '20px', backgroundColor: '#007bff', width: '90px' }}
-      >
-        Blogs
-      </Button>
+      <Box display='flex' flexDirection='column' width='100%' alignItems='center' mb={3}>
+        <Button variant='contained' sx={{ marginTop: '20px', backgroundColor: '#007bff' }}>
+          Blogs
+        </Button>
+      </Box>
 
       <MyPost posts={data.me.posts} />
       <Footer />
